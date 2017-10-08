@@ -37,12 +37,13 @@ list <- list$value
 #just to let the first warning go away
 f <- av_get(symbol = list[1], av_fun = "TIME_SERIES_INTRADAY", interval = "1min") 
 
-list <- sample(list, 100)
+list <- sample(list, 10)
 
 stock <- sapply(list, readSym)
 
 stock <-as.data.frame(stock)
 
+write.table(stock, file = "stock.csv", dec=",", sep = ";")
 
 
 
