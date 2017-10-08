@@ -52,9 +52,8 @@ In order to let the algorithm implement market decisions (whether to buy or to s
 \item I phase: consists manly on data gathering from the environment $E$, in our case since we are using an univariate time series model our data comes form the sub set $M$ which represent the market data;
 \item II phase: at this point the data gathered are used by the quant to create a proper financial model able to forecast the behaviour of the securities under scope; 
 \item III phase: this phase embrace the activities of backtesting of the financial model built by the professional;
-\item V phase: eventually the financial moodel is deployed and starts to interact with the market $M$.
+\item V phase: eventually the financial moodel is deployed and starts to interact with the market $M$, buying and selling a specific security.
 \end{itemize}
-
 
 In this paper we decided to operate a forecast using a model based on time series, precisely an ARIMA (Auto Regressive Integrated Moving Average) process. Plus following what reported by Tseng et al.\cite{TsengFuzzyARIMAmodel2001} we associated to ARIMA process the fuzzy regression %mettere riferimento
 and we defined an algorithm for pseudo real-time signal generation. Based on such signal the algorithm enact the decision whether to buy a stock (forecasting its increase in price) or sell it (because the price will fall). The overall model has to compete with a "naive" algorithm that perform buy and sell decision based only on the condition that the last price is major than the current one, and sell it when the such price raises.
@@ -95,8 +94,12 @@ and we defined an algorithm for pseudo real-time signal generation. Based on suc
 \end{center}
 \captionof{figure}{Algorithmic trading process}
 \label{algoproces}
-\subsection{Auto Regressive Integrated Moving Average: key concepts and features}
-ARIMA process are a class of univariate time series models, this kind of models attempt to predict financial variables using only information contained in their own past values and possibly current and past values of an error term.
+\subsection{AutoRegressive Integrated Moving Average: key concepts and features}
+ARIMA process are a class of univariate time series models, this kind of models attempt to predict financial variables using only information contained in their own past values and possibly current and past values of an error term.ARIMA process differ from the exponential smoothing since ARIMA focuses on the autocorrelation of the time series instead of trend and seasonality. Such model firstly proposed by Box-Jenkins %mettere riferimento
+combines three factors, namely: differencing, autoregressive model and moving average model.
+Where differencing is intend as the process of transformation of the timeseries such that we end up with a stationary time series which has as property no time dependency, in other terms given $X_t$ a stochastic process and $F_X(x_{t_k}+\theta$ its cumulative distribution. $X_t$ is stationary when $\forall k,\theta and t_k$ we have that:
+\[ F_x(x_{t_k}_+\theta = F_x(x_{t_k} \]
+aoregressive models are the ones that
 
 \printbibliography
 
