@@ -1,0 +1,1127 @@
+stockinfo <- matrix(data=NA, nrows = 8, ncol = length(symbols))
+stockinfo <- matrix(data=NA, nrows = 8, ncol = length(symbols), byrow=FALSE)
+stockinfo <- matrix(data=NA, nrow = 8, ncol = length(symbols), byrow=FALSE)
+stockinfo
+stockinfo <- matrix(data=NA, nrow = 8, ncol = length(symbols), byrow=TRUE)
+stockinfo
+stockinfo <- matrix(data=NA, nrow = 8, ncol = length(symbols))
+stockinfo
+dim (stockinfo)
+stockinfo <- matrix(data=NA, ncol = 8, nrow = length(symbols))
+x
+i
+stockinfo[i, 1]<-x[,1]#
+	stockinfo[i, 2]<-x[,2]#
+	stockinfo[i, 3]<-x[,3]#
+	stockinfo[i, 4]<-x[,4]#
+	stockinfo[i, 5]<-x[,5]#
+	stockinfo[i, 6]<-x[,6]#
+	stockinfo[i, 7]<-x[,7]#
+	stockinfo[i, 8]<-x[,8]
+stockinfo
+stockinfo <- matrix(data=NA, ncol = 8, nrow = length(symbols))#
+i=1#
+for(i in 1:2){#
+	x <- getQuote(symbols[i])#
+	stockinfo[i, 1]<-x[,1]#
+	stockinfo[i, 2]<-x[,2]#
+	stockinfo[i, 3]<-x[,3]#
+	stockinfo[i, 4]<-x[,4]#
+	stockinfo[i, 5]<-x[,5]#
+	stockinfo[i, 6]<-x[,6]#
+	stockinfo[i, 7]<-x[,7]#
+	stockinfo[i, 8]<-x[,8]#
+	print(i)#
+}
+stockinfo
+i=1#
+for(i in 1:2){#
+	x <- getQuote(symbols[i])#
+	stockinfo[i, 1]<-x[1,1]#
+	stockinfo[i, 2]<-x[1,2]#
+	stockinfo[i, 3]<-x[1,3]#
+	stockinfo[i, 4]<-x[1,4]#
+	stockinfo[i, 5]<-x[1,5]#
+	stockinfo[i, 6]<-x[1,6]#
+	stockinfo[i, 7]<-x[1,7]#
+	stockinfo[i, 8]<-x[1,8]#
+	print(i)
+}
+stockinfo
+stockinfo[i, 1]<-x[1,1]#
+	stockinfo[i, 2]<-x[1,2]#
+	stockinfo[i, 3]<-x[1,3]#
+	stockinfo[i, 4]<-x[1,4]#
+	stockinfo[i, 5]<-x[1,5]#
+	stockinfo[i, 6]<-x[1,6]#
+	stockinfo[i, 7]<-x[1,7]#
+	stockinfo[i, 8]<-x[1,8]
+stockinfo <- matrix(data=NA, ncol = 8, nrow = length(symbols))
+stockinfo[,1]
+stockinfo[1,]
+#zio banana#
+#
+#load the necessary libraries#
+require(RCurl)#
+require(quantmod)#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+stockinfo <- matrix(data=NA, ncol = 8, nrow = length(symbols))#
+i=1#
+for(i in 1:2){#
+	x <- getQuote(symbols[i])#
+	stockinfo[i, 1]<-x[1,1]#
+	stockinfo[i, 2]<-x[1,2]#
+	stockinfo[i, 3]<-x[1,3]#
+	stockinfo[i, 4]<-x[1,4]#
+	stockinfo[i, 5]<-x[1,5]#
+	stockinfo[i, 6]<-x[1,6]#
+	stockinfo[i, 7]<-x[1,7]#
+	stockinfo[i, 8]<-x[1,8]#
+	print(i)#
+}
+stockinfo[,1]
+stockinfo[1,1]
+stockinfo[1,2]
+stockinfo[1,3]
+stockinfo
+stockinfo[1,]
+stockinfo[2,]
+x
+summary(x)
+as.numeric(sub("%","",stockinfo[,4]))/100
+#zio banana#
+#
+#load the necessary libraries#
+require(RCurl)#
+require(quantmod)#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+stockinfo <- matrix(data=NA, ncol = 8, nrow = length(symbols))#
+i=1#
+for(i in 1:legth(symbols)){#
+	x <- getQuote(symbols[i])#
+	stockinfo[i, 1]<-x[1,1]#
+	stockinfo[i, 2]<-x[1,2]#
+	stockinfo[i, 3]<-x[1,3]#
+	stockinfo[i, 4]<-x[1,4]#
+	stockinfo[i, 5]<-x[1,5]#
+	stockinfo[i, 6]<-x[1,6]#
+	stockinfo[i, 7]<-x[1,7]#
+	stockinfo[i, 8]<-x[1,8]#
+	print(i)#
+}#
+#
+stockinfo[,4] <- as.numeric(sub("%","",stockinfo[,4]))/100
+#zio banana#
+#
+#load the necessary libraries#
+require(RCurl)#
+require(quantmod)#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+stockinfo <- matrix(data=NA, ncol = 8, nrow = length(symbols))#
+i=1#
+for(i in 1:length(symbols)){#
+	x <- getQuote(symbols[i])#
+	stockinfo[i, 1]<-x[1,1]#
+	stockinfo[i, 2]<-x[1,2]#
+	stockinfo[i, 3]<-x[1,3]#
+	stockinfo[i, 4]<-x[1,4]#
+	stockinfo[i, 5]<-x[1,5]#
+	stockinfo[i, 6]<-x[1,6]#
+	stockinfo[i, 7]<-x[1,7]#
+	stockinfo[i, 8]<-x[1,8]#
+	print(i)#
+}#
+#
+stockinfo[,4] <- as.numeric(sub("%","",stockinfo[,4]))/100
+stockinfo
+stockinfo[,4]
+require(plotly)
+p <- plot_ly(x = stockinfo[,4], typer="histogram")
+p
+stockinfo[,4]
+class(stockinfo[1,4])
+as.numeric(stockinfo[1,4])
+as.numeric(stockinfo[,4])
+p <- plot_ly(x = as.numeric(stockinfo[,4]), typer="histogram")
+p
+p <- plot_ly(x = as.numeric(stockinfo[,4]), type="histogram")
+p
+symbols[1128]
+count
+install.packages("googlesheets", dependencies= TRUE)
+gs_copy(gs_gap(), to = "Gapminder")
+require(googlesheets)
+gs_copy(gs_gap(), to = "Gapminder")
+pro <- gs_new("prova", input = stockinfo, trim = FALSE)
+iris_ss <- gs_new("iris", input = head(iris, 3), trim = TRUE)
+pro <- gs_new("prova", input = stockinfo, trim = FALSE)
+iris_ss <- gs_new("iris", input = head(iris, 3), trim = TRUE)
+pro <- gs_new("prova", input = head(stockinfo, 3), trim = TRUE)
+pro <- gs_new("prova", input = stockinfo, trim = TRUE)
+install.packages("qmao", repos="http://R-Forge.R-project.org", dependencies = TRUE)
+install.packages("qmao", dependencies = TRUE)
+install.packages("RJSONIO", dependencies = TRUE)
+install.packages("pander", dependencies = TRUE)
+install.packages("gtools", dependencies = TRUE)
+install.packages("qmao", repos="http://R-Forge.R-project.org", dependencies = TRUE)
+#zio banana#
+#
+#load the necessary libraries#
+require(RCurl)#
+require(alphavantager)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+#symbols <- head(symbols, -2)#
+#starting portfolio#
+close  <- matrix (data= NA, ncol=100, nrow=length(symbols))#
+#
+stockinfo <- data.frame(symbols, close)#
+#
+i=1
+header(stockinfo)
+head(stockinfo)
+symbols
+head(stockinfo)
+dim(stockinfo$symbols)
+length(stockinfo$symbols)
+stockinfo$symbols
+stockinfo
+head(stockinfo)
+#zio banana#
+#
+#load the necessary libraries#
+require(RCurl)#
+require(alphavantager)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+#symbols <- head(symbols, -2)#
+#starting portfolio#
+close  <- matrix (data= NA, ncol=100, nrow=length(symbols))#
+#
+stockinfo <- data.frame(symbols, close)#
+#
+i=1
+stockinfo[1,2:101]
+stockinfo[2,2:101]
+stockinfo[2,1:101]
+stockinfo[6,1:101]
+x <- av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min")
+stockinfo[i,2:101]<-x$close
+stockinfo[1,1:101]
+x$close
+for(i in 1:6){#
+	x <- av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+#
+	stockinfo[i,2:101]<-x$close#
+#
+	print(i)#
+}
+i
+x$close
+length(x$close)
+for(i in 1:6){#
+	x <- av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+	if(length(x$close)=100){#
+	stockinfo[i,2:101]<-x$close#
+	}#
+	print(i)#
+}
+for(i in 1:6){
+x <- av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min")
+if(length(x$close)=100){
+i=1#
+#
+for(i in 1:6){#
+	x <- av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+	if(length(x$close)==100){#
+	stockinfo[i,2:101]<-x$close#
+	}#
+	print(i)#
+}
+stockinfo[1:6]
+stockinfo[1:6,]
+final[complete.cases(stockinfo), ]
+stockinfo[complete.cases(stockinfo), ]
+complete.cases(stockinfo),
+complete.cases(stockinfo)
+#zio banana#
+#
+#load the necessary libraries#
+require(RCurl)#
+require(alphavantager)#
+#
+set.seed(60)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+symbols <- symbols[symbols != "LEXEB"]#
+#
+#take a sample of 100 stock#
+symbols <- sample(symbols, 100)#
+#
+#starting portfolio#
+close  <- matrix (data= NA, ncol=100, nrow=length(symbols))#
+#
+stockinfo <- data.frame(symbols, close)#
+#
+i=1
+for(i in 1:length(symbols)){#
+	x <- av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+	if(length(x$close)==100){#
+	stockinfo[i,2:101]<-x$close#
+	}#
+	print(i)#
+}
+set.seed(60)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+#take a sample of 100 stock#
+symbols <- sample(symbols, 100)#
+#
+#starting portfolio#
+close  <- matrix (data= NA, ncol=100, nrow=length(symbols))#
+#
+stockinfo <- data.frame(symbols, close)#
+#
+i=1
+for(i in 1:length(symbols)){#
+	x <- av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+	if(length(x$close)==100){#
+	stockinfo[i,2:101]<-x$close#
+	}#
+	print(i)#
+}
+tryCatch(x <- av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min"))
+tryCatch(av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min"))
+?tryCatch
+err <- tryCatch(av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min"))
+err
+err <- tryCatch(av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min"), finally = print()"cazzi"))
+err <- tryCatch(av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min"), finally = print("cazzi"))
+err <- tryCatch(av_get(symbol = symbols[2], av_fun = "TIME_SERIES_INTRADAY", interval = "1min"), finally = print("cazzi"))
+err <- tryCatch(av_get(symbol = symbols[2], av_fun = "TIME_SERIES_INTRADAY", interval = "1min"), error=print("DIO"), finally = print("cazzi"))
+err <- tryCatch(av_get(symbol = symbols[i], av_fun = "TIME_SERIES_INTRADAY", interval = "1min"), error=print("DIO"), finally = print("cazzi"))
+#zio banana#
+#load the necessary libraries#
+require(RCurl)#
+require(alphavantager)#
+#error handling#
+readapi <- function(sym) {#
+    out <- tryCatch(#
+        {#
+           message("This is the 'try' part")#
+          x <- av_get(symbol = sym, av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+          out<-x$close#
+        },#
+        error=function(cond) {#
+            message(paste("Symbol does not seem to exist:", sym))#
+            return(NA)#
+        },#
+        warning=function(cond) {#
+            message(paste("Symbol caused a warning:", sym))#
+            return(NA)#
+        },#
+        finally={#
+            message(paste("Processed Symbol:", sym))#
+        }#
+    )    #
+    return(out)#
+}#
+set.seed(60)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+#take a sample of 100 stock#
+symbols <- sample(symbols, 100)#
+#
+#starting portfolio#
+close  <- matrix (data= NA, ncol=100, nrow=length(symbols))#
+#
+stockinfo <- data.frame(symbols, close)#
+#
+i=1#
+#
+for(i in 1:length(symbols)){#
+	x <- lapply(symbols, readapi)#
+	if(length(x$close)==100){#
+	stockinfo[i,2:101]<-x$close#
+	}#
+	print(i)#
+}	#
+#
+#remove NA#
+stockinfo<-stockinfo[complete.cases(stockinfo), ]#
+print(length(stockinfo$symbols))#
+%portfolio<- c(0,0,0,0,0,0)#
+%gain=0#
+%i=1#
+%k=1#
+%Sys.sleep(60)#
+%for(k in 1:60){#
+%for(i in 1:6){#
+%	x <- getQuote(symbols[i])#
+%	if(portfolio[i] == 0){#
+%	if(x[1,2] < stockinfo[i,3]){#
+%		portfolio[i]=as.numeric(x[1,2])#
+%	}#
+%}else{#
+%	if(portfolio[i]<x[1,2]){#
+%	gain=(as.numeric(x[1,2])-portfolio[i])+gain#
+%	portfolio[i]=0#
+%	}}#
+%#
+%}#
+%print("Update")#
+%print(portfolio)#
+%print(gain)#
+%#
+%Sys.sleep(60)#
+%}
+#zio banana#
+#load the necessary libraries#
+require(RCurl)#
+require(alphavantager)#
+#
+#error handling#
+readapi <- function(sym) {#
+    out <- tryCatch(#
+        {#
+          x <- av_get(symbol = sym, av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+          out<-x$close#
+        },#
+        error=function(cond) {#
+            message(paste("Symbol does not seem to exist:", sym))#
+            return(NA)#
+        },#
+        warning=function(cond) {#
+            message(paste("Symbol caused a warning:", sym))#
+            return(NA)#
+        },#
+        finally={#
+            message(paste("Processed Symbol:", sym))#
+        }#
+    )    #
+    return(out)#
+}#
+set.seed(60)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+#
+#take a sample of N stock#
+symbols <- sample(symbols, 20)#
+#
+#starting portfolio#
+close  <- matrix (data= NA, ncol=100, nrow=length(symbols))#
+#
+stockinfo <- data.frame(symbols, close)#
+#
+	stockinfo[,2:20] <- lapply(symbols, readapi)#
+#
+#remove NA#
+stockinfo<-stockinfo[complete.cases(stockinfo), ]#
+print(length(stockinfo$symbols))
+stockinfo
+#zio banana#
+#load the necessary libraries#
+require(RCurl)#
+require(alphavantager)#
+#
+#error handling#
+readapi <- function(sym) {#
+    out <- tryCatch(#
+        {#
+          x <- av_get(symbol = sym, av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+          out<-x$close#
+        },#
+        error=function(cond) {#
+            message(paste("Symbol does not seem to exist:", sym))#
+            return(NA)#
+        },#
+        warning=function(cond) {#
+            message(paste("Symbol caused a warning:", sym))#
+            return(NA)#
+        },#
+        finally={#
+            message(paste("Processed Symbol:", sym))#
+        }#
+    )    #
+    return(out)#
+}#
+set.seed(60)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+#
+#take a sample of N stock#
+symbols <- sample(symbols, 20)#
+#
+#starting portfolio#
+close  <- matrix (data= NA, ncol=100, nrow=length(symbols))#
+#
+stockinfo <- data.frame(symbols, close)#
+#
+	stockinfo[,2:20] <- lapply(symbols, readapi)#
+#
+#remove NA#
+stockinfo<-stockinfo[complete.cases(stockinfo), ]#
+print(length(stockinfo$symbols))
+#zio banana#
+#load the necessary libraries#
+require(RCurl)#
+require(alphavantager)#
+#
+#error handling#
+readapi <- function(sym) {#
+    out <- tryCatch(#
+        {#
+          x <- av_get(symbol = sym, av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+          out<-x$close#
+        },#
+        error=function(cond) {#
+            message(paste("Symbol does not seem to exist:", sym))#
+            return(NA)#
+        },#
+        warning=function(cond) {#
+            message(paste("Symbol caused a warning:", sym))#
+            return(NA)#
+        },#
+        finally={#
+            message(paste("Processed Symbol:", sym))#
+        }#
+    )    #
+    return(out)#
+}#
+set.seed(60)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+#
+#take a sample of N stock#
+symbols <- sample(symbols, 3)#
+#
+#starting portfolio#
+close  <- matrix (data= NA, ncol=100, nrow=length(symbols))#
+#
+stockinfo <- data.frame(symbols, close)#
+#
+	stockinfo[,2:101] <- lapply(symbols, readapi)#
+#
+#remove NA#
+stockinfo<-stockinfo[complete.cases(stockinfo), ]#
+print(length(stockinfo$symbols))
+symbols
+stockinfo[,2:101] <- lapply(symbols, readapi)
+lapply(symbols, readapi)
+c<-lapply(symbols, readapi)
+c
+c[1,]
+c[1]
+summary(c)
+c$1
+class(c)
+class(c[1])
+unlist(c)
+c<-sapply(symbols, readapi)
+c
+class(c)
+c$lexeb
+c$CTSO
+c$CTSO[3]
+stockinfo[,2:101] <-c
+lapply(symbols, readapi)
+stockinfo[1:3,2:101] <- lapply(symbols, readapi)
+stockinfo <- sapply(symbols, readapi)
+stockinfo
+stockinfo[1,]
+stockinfo[,1]
+unlist(stockinfo)
+as.data.frame(stockinfo)
+#zio banana#
+#load the necessary libraries#
+require(RCurl)#
+require(alphavantager)#
+#
+#error handling#
+readapi <- function(sym) {#
+    out <- tryCatch(#
+        {#
+          x <- av_get(symbol = sym, av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+          out<-x$close#
+        },#
+        error=function(cond) {#
+            message(paste("Symbol does not seem to exist:", sym))#
+            return(NA)#
+        },#
+        warning=function(cond) {#
+            message(paste("Symbol caused a warning:", sym))#
+            return(NA)#
+        },#
+        finally={#
+            message(paste("Processed Symbol:", sym))#
+        }#
+    )    #
+    return(out)#
+}#
+set.seed(60)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+#
+#take a sample of N stock#
+symbols <- sample(symbols, 100)#
+#
+#starting portfolio#
+#
+	stockinfo <- (sapply(symbols, readapi))#
+#
+#remove NA#
+stockinfo<-stockinfo[complete.cases(stockinfo), ]#
+print(length(stockinfo$symbols))#
+%portfolio<- c(0,0,0,0,0,0)#
+%gain=0#
+%i=1#
+%k=1#
+%Sys.sleep(60)#
+%for(k in 1:60){#
+%for(i in 1:6){#
+%	x <- getQuote(symbols[i])#
+%	if(portfolio[i] == 0){#
+%	if(x[1,2] < stockinfo[i,3]){#
+%		portfolio[i]=as.numeric(x[1,2])#
+%	}#
+%}else{#
+%	if(portfolio[i]<x[1,2]){#
+%	gain=(as.numeric(x[1,2])-portfolio[i])+gain#
+%	portfolio[i]=0#
+%	}}#
+%#
+%}#
+%print("Update")#
+%print(portfolio)#
+%print(gain)#
+%#
+%Sys.sleep(60)#
+%}
+stockinfo
+length(stockinfo)
+as.data.frame(stockinfo)
+length(stockinfo$COHU)
+#zio banana#
+#load the necessary libraries#
+require(RCurl)#
+require(alphavantager)#
+#
+#error handling#
+readapi <- function(sym) {#
+    out <- tryCatch(#
+        {#
+          x <- av_get(symbol = sym, av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+          out<-x$close#
+        },#
+        error=function(cond) {#
+            message(paste("Symbol does not seem to exist:", sym))#
+            return(NA)#
+        },#
+        warning=function(cond) {#
+            message(paste("Symbol caused a warning:", sym))#
+            return(NA)#
+        },#
+        finally={#
+            message(paste("Processed Symbol:", sym))#
+        }#
+    )    #
+    return(out)#
+}#
+set.seed(60)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+#
+#take a sample of N stock#
+n <- 10 #
+symbols <- sample(symbols, n)#
+#
+#starting portfolio#
+	stockinfo <- (sapply(symbols, readapi))
+stockinfo[length(stockinfo) != 100]
+stockinfo == NA
+stockinfo == 10
+complete.cases(stockinfo)
+dim(stockinfo)
+length(stockinfo)
+length[,]
+stockinfo[,]
+stockinfo[1,]
+stockinfo <- (vapply(symbols, readapi))
+stockinfo <- (apply(symbols, readapi))
+stockinfo <- (lapply(symbols, readapi))
+stockinfo[1,]
+stockinfo[1]
+stockinfo <- (sapply(symbols, readapi))
+stockinfo[1]
+stockinfo[1:10]
+length(stockinfo[1:10])
+length(stockinfo[1])
+stockinfo[1]
+length(stockinfo[1])
+dim(stockinfo[1])
+summary(stockinfo[1])
+stockinfo <- (lapply(symbols, readapi))
+summary(stockinfo[1])
+stockinfo[1,]
+stockinfo[1]
+length(stockinfo[1])
+summary(stockinfo)
+d<-summary(stockinfo)
+d
+d$length
+summary(d)
+d
+d[1]
+d[3]
+as.numeric(d)
+as.numeric(d[1:n])
+as.numeric(d[1:n]) = 1
+as.numeric(d[1:n])
+t<-as.numeric(d[1:n])
+[t == 100,]
+[d[1:n] == 100,]
+[d[1:n] == "100", ]
+[d == "100", ]
+d[d == "100", ]
+d
+summary(d)
+class(d)
+stockinfo <- (sapply(symbols, readapi))
+d<-summary(stockinfo)
+class(d)
+head(d)
+d
+d[1,]
+d$Length
+d[,2]
+d[,1]
+as.numericd[,1]
+as.numeric(d[,1])
+[d==100 & !is.nan(d)]
+d[d==100 & !is.nan(d)]
+d
+g<-as.numeric(d[,1])
+g
+g[g==100 & !is.nan(d)]
+g
+g[g=100 & !is.nan(d)]
+g[g=100 & !is.nan(g)]
+g[g>100 & !is.nan(g)]
+g[g=>100 & !is.nan(g)]
+g[g>=100 & !is.nan(g)]
+g[g==n & !is.nan(g)]
+g[g==100 & !is.nan(g)]
+g[g == 100]
+[g == 100]
+g == 100
+s<-summary(stockinfo)#
+	s<-as.numeric(s[,2])
+s
+stockinfo
+stockinfo <- (sapply(symbols, readapi))#
+	s<-summary(stockinfo)#
+	s<-as.numeric(s[,2])
+summary(stockinfo)
+s<-summary(stockinfo)
+s[,2]
+s<-as.numeric(s[,1])
+s == n
+s == 100
+stockinfo <- stockinfo(s == 100)
+stockinfo <- stockinfo[s == 100]
+stockinfo
+s
+as.data.frame(stockinfo)
+#zio banana#
+#load the necessary libraries#
+require(RCurl)#
+require(alphavantager)#
+#
+#error handling#
+readapi <- function(sym) {#
+    out <- tryCatch(#
+        {#
+          x <- av_get(symbol = sym, av_fun = "TIME_SERIES_INTRADAY", interval = "1min")#
+          out<-x$close#
+        },#
+        error=function(cond) {#
+            message(paste("Symbol does not seem to exist:", sym))#
+            return(NA)#
+        },#
+        warning=function(cond) {#
+            message(paste("Symbol caused a warning:", sym))#
+            return(NA)#
+        },#
+        finally={#
+            message(paste("Processed Symbol:", sym))#
+        }#
+    )    #
+    return(out)#
+}#
+set.seed(60)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#searching for the NASDAQ listed companies#
+txt=getURL("ftp://nasdaqtrader.com/SymbolDirectory/Nasdaqlisted.txt", ssl.verifypeer = FALSE)#
+#create a data frame out of that#
+listdata = read.table(textConnection(txt), header = TRUE, sep = "|", dec = "\n" )#
+#
+#take only the common stocks#
+#for cycle#
+liststock <- data.frame(listdata[0,])#
+k=1#
+i=1#
+for(i in 1:(length(listdata$Security.Name))){#
+	if ((length(grep("Common Stock", listdata$Security.Name[i]))) == 1){#
+		liststock[k,] = listdata[i,]#
+		k = k + 1#
+	}#
+}#
+#
+#create an array of symbols#
+symbols = as.character(liststock$Symbol)#
+#eliminate the last element (data update blah)#
+symbols <- head(symbols, -2)#
+#
+#take a sample of N stock#
+n <- 100#
+#symbols <- sample(symbols, n)#
+#
+#starting portfolio#
+	stockinfo <- (sapply(symbols, readapi))#
+	s<-summary(stockinfo)#
+	s<-as.numeric(s[,1])#
+	stockinfo <- stockinfo[s == 100]#
+	stockinfo <- as.data.frame[stockinfo]
+stockinfo
+as.data.frame(stockinfo)
+#main script#
+#
+require(alphavantager)#
+#
+av_api_key("JJQ9PELUQJJ2FQ0U")#
+#
+#set.seed(60)#
+#
+readSym <- function(sym) {#
+    out <- tryCatch(#
+        {#
+         x <- av_get(symbol = sym, av_fun = "TIME_SERIES_INTRADAY", interval = "1min") #
+	if(length(x$close) == 100){#
+    	return(x$close)#
+	}else{#
+	return(NA)#
+#
+	}#
+	},#
+        error=function(cond) {#
+            message(paste("URL does not seem to exist:", sym))#
+            return(NA)#
+        },#
+        warning=function(cond) {#
+            message(paste("URL caused a warning:", sym))#
+            return(NA)#
+        },#
+        finally={ #
+            message(paste("Processed URL:", sym))#
+        }#
+    )    #
+return(out)#
+#
+}#
+#
+list <- read.table("listedCS.csv", sep = ";")#
+list <- as.character(list[,1])#
+#
+#just to let the first warning go away#
+f <- av_get(symbol = list[1], av_fun = "TIME_SERIES_INTRADAY", interval = "1min") #
+#
+list <- sample(list, 34)#
+#list <- list[6:15]#
+#
+stock <- sapply(list, readSym)#
+#
+stock <-as.data.frame(stock)#
+#
+write.table(stock, file = "stock.csv", dec=",", sep = ";", row.names = FALSE)
