@@ -23,5 +23,5 @@ symbols = as.character(liststock)
 #eliminate the last element (data update blah)
 symbols <- head(symbols, -2)
 
-print(symbols)
+write.table(symbols, file = "listedCS.csv", sep = ";")
 

@@ -1,10 +1,10 @@
 #main script
 
-require(alphavantager)
+require(quantmod)
 
-av_api_key("JJQ9PELUQJJ2FQ0U")
+set.seed(60)
 
-#set.seed(60)
+##function Read sym##
 
 readSym <- function(sym) {
     out <- tryCatch(
@@ -33,13 +33,12 @@ return(out)
 
 }
 
+## end of function read sym ##
+
 list <- read.table("listedCS.csv", sep = ";")
 list <- as.character(list[,1])
 
-#just to let the first warning go away
-f <- av_get(symbol = list[1], av_fun = "TIME_SERIES_INTRADAY", interval = "1min") 
-
-list <- sample(list, 34)
+list <- sample(list, 10)
 #list <- list[6:15]
 
 stock <- sapply(list, readSym)
