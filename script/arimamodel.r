@@ -5,22 +5,36 @@ library(tseries)
 
 
 stock <- read.table("stock.csv", dec = ",", sep = ";", header = 1)
+#list <- colnames(stock)
+#divide in training set and test set
 
+train <- ts(stock[1:70,])
+test <- ts(stock[71:100,], start = 71, end = 100)
 l <- length(stock[1,])
 
-stock<- ts(stock)
+fit <- lapply(train, auto.arima)
+foreca <- lapply(fit, h = 30, level = 95, forecast)
+fitted <- lapply(fit, fitted)
 
-fit <- lapply(stock, auto.arima)
-foreca <- lapply(fit, forecast)
-
-f=c(1:l)
-
-i=1
-for(i in 1:l){
-	
-f[i] <- foreca[[i]][[4]][[1]]
-	
+i <- 1
+error <- test * 0
+for (i in 1:l) {
+	error [,i] <- foreca [[i]][[4]] - test [,i]
+	print(i)
 }
 
-f-stock[100,]
+plot.ts(error)
+
+### feed the residuals into a neural net
+require("neuralnet")
+
+f <- as.formula("AMTD ~ indice")
+nn <- neuralnet(f,train,hidden=c(3,2), linear.output = FALSE)
+
+plot(fitted$AMTD, col = "red")
+lines(train[,1], col = "black")
+lines(compute(nn,indice), col = "yellow")
+
+
+
 
