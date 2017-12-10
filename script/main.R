@@ -2,9 +2,9 @@
 
 require(alphavantager)
 
-av_api_key("JJQ9PELUQJJ2FQ0U")
+av_api_key(Sys.getenv("Alpha_key"))
 
-#set.seed(60)
+set.seed(60)
 
 readSym <- function(sym) {
     out <- tryCatch(
@@ -40,11 +40,17 @@ list <- as.character(list[,1])
 f <- av_get(symbol = list[1], av_fun = "TIME_SERIES_INTRADAY", interval = "1min") 
 
 list <- sample(list, 34)
-#list <- list[6:15]
 
 stock <- sapply(list, readSym)
 
 stock <-as.data.frame(stock)
+stock <- stock[colSums(!is.na(stock)) > 0]
+
+#ts transformation
+tsstock <- ts(stock[1:60,])
+
+#plot of three samples
+autoplot(tsstock[,sample(1:30, 3)])
 
 write.table(stock, file = "stock.csv", dec=",", sep = ";", row.names = FALSE)
 
