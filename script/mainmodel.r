@@ -15,7 +15,13 @@ s <- sample(1:31, 1)
 stockfull <- read.table("stock.csv", dec = ",", sep = ";", header = 1)
 
 i <- 1
-buy <- FALSE
+buy.model <- FALSE
+buy.naive <- FALSE
+profitloss.model <- 0
+profitloss.naive <- 0
+buyprice.model <- FALSE
+buyprice.naive <- FALSE
+
 #starting a loop that will loop 30 times
 for (i in 1:30){
 
@@ -23,17 +29,6 @@ for (i in 1:30){
   print(i)
   
   stock <- stockfull[i:(i+59),]
-  
-  if (i != 1){
-    # buying side
-    if (buy == TRUE){
-      if pred 
-    }
-    # selling side
-  }
-  
-  
-  
   
   #get training set
   train <- ts(stock[,s])
@@ -74,4 +69,33 @@ for (i in 1:30){
   }
   signal.naive <- sample(c(0,1), replace=TRUE, size=1)
   
+  
+  if (i != 30){
+    # buying selling side model  
+    if (buy.model == TRUE){
+      if (signal.model < 1){
+        profitloss.model <- profitloss.model + (buyprice.model - stock[60,s])
+        buy.model = FALSE
+      }
+    }else{
+      if (signal.model == 1){
+        buyprice.model <- stock[60,s]
+        buy.model = TRUE
+        }
+    }
+
+  # buying selling side naive
+      if (buy.naive == TRUE){
+        if (signal.naive < 1){
+          profitloss.naive <- profitloss.naive + (buyprice.naive - stock[60,s])
+          buy.naive = FALSE
+        }
+      }else{
+        if (signal.naive == 1){
+          buyprice.naive <- stock[60,s]
+          buy.naive = TRUE
+        }
+      }
+  }
+
 }
