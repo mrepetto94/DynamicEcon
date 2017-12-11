@@ -46,12 +46,6 @@ stock <- sapply(list, readSym)
 stock <-as.data.frame(stock)
 stock <- stock[colSums(!is.na(stock)) > 0]
 
-#ts transformation
-tsstock <- ts(stock[1:60,])
-
-#plot of three samples
-autoplot(tsstock[,sample(1:30, 3)])
-
 write.table(stock, file = "stock.csv", dec=",", sep = ";", row.names = FALSE)
 
 

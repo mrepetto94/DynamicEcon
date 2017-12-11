@@ -1,31 +1,26 @@
-#this script builds the arima models for the stocks provided by the stock.csv
+#this script builds the arima models for a random stock in the portfolio
 
 library(forecast)
 library(tseries)
 
-
+#get the stock value
 stock <- read.table("stock.csv", dec = ",", sep = ";", header = 1)
-#list <- colnames(stock)
 
-#divide in training set and test set
+#set seed and choose a random stock to give into the ARIMA process
+set.seed(60)
+s <- sample(1:31, 1)
 
-train <- ts(stock[1:99,])
-test <- ts(stock[99:100,], start = 99, end = 100)
-l <- length(stock[1,])
+#get training set
+train <- ts(stock[1:60,s])
 
-fit <- lapply(train, auto.arima)
-foreca <- lapply(fit, h = 1, level = 95, forecast)
-fitted <- lapply(fit, fitted)
+#fit model
+fit <- auto.arima(train)
 
-i <- 1
+#get fitting error
 error <- train * 0
-for (i in 1:l) {
-	error [,i] <- fitted [[i]] - train [,i]
-	foreca[i] <- foreca[[i]]$mean[1]
-	}
+error <- fit$fitted - train
 
-foreca <- as.data.frame(foreca)
 
 write.table(error, file = "error.csv", dec=",", sep = ";", row.names = FALSE)
-write.table(foreca, file = "foreca.csv", dec=",", sep = ";", row.names = FALSE)
+
 
