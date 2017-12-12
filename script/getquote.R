@@ -1,4 +1,4 @@
-#main script
+#get quote
 
 require(alphavantager)
 
