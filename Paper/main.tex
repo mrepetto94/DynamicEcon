@@ -203,7 +203,6 @@ The empirical study was made using a portfolio built with common stocks from the
 \subsection{The 30 stocks portfolio}
 In order to get the information of the NASDAQ stock we used the API provided by Alphavantage \cite{_alpha_} and we opted for the 1 minute intraday data from which we took the closing price. In \ref{portfolio} a sample of such dataset.
 
-
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth, ]{Paper/images/Rplot.png}
@@ -211,9 +210,30 @@ In order to get the information of the NASDAQ stock we used the API provided by 
     \label{portfolio}
 \end{figure}
 
+From such dataset we run the \textit{auto.arima} function and we isolated the fitting error. %inserire plot
+
+In order to see the goodness of fitting we searched for autocorrelation on the residuals and we found any.
+
+Then we built a NN out of it which set as input the lagged stock price and as output the current error term \ref{}.
+
+After the model setting we set a series of condition that create the signal. Such condition are highlighted in the following diagram.
+
 \section{Evidence and findings}
+After 930 rounds, that is we run the sequence for all the stocks in the portfolio we get the following conclusion:
+\begin{itemize}
+    \item the model out perform the naive algorithm
+    \item the model failed to predict in a consistent way whether the price was going up or down
+    \item either the models alone failed to do so 
+\end{itemize}
+Therefore we can conclude that such model didn't gave any competitive advantage in terms of profit and loss.
+
 
 \section{Conclusion}
+In conclusion we can say that the hybrid ARIMA however is a very interesting tool for data forecasting is still not able (at least as posed in this paper) to be used in algorithmic trading. 
+
+The writer of this article hope that many other researchers will try to cast some light above this hybrd methodology in order to develop a better process for such modelling.
+
+All the scripts and files are available on GitHub at the following repository: 
 
 \newpage
 \emergencystretch=1em
