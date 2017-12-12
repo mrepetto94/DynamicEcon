@@ -198,15 +198,17 @@ $$
 In building an ANN model, subjective judgments of the model order as well as the model adequacy is often needed, and there's no universal rule of thumb on that.Therefore it is possible that sub-optimal models may be used in the hybrid method.
 
 \section{The empirical study}
-The empirical study was made using a portfolio built with common stock from the NASDAQ. Such portfolio was composed by 30 common stock randomly sampled from the listed company on NASDAQ. From this portfolio we picked a stock and we tested the hybrid ARIMA versus a naive algorithm who generated buy/selling signals at random. We run the game for 30 matches, and every time we retrained our model with the newer information, leaving aside the older ones.
+The empirical study was made using a portfolio built with common stocks from the NASDAQ. Such portfolio was composed by 31 common stocks randomly sampled from the listed company on NASDAQ. From this portfolio we picked each stock and we tested the hybrid ARIMA versus a naive algorithm who generated buy/selling signals at random. We run the game for 30 matches, and every time we retrained our model with the newer information, leaving aside the older ones. The time frame was set at 60 intervals.
 
 \subsection{The 30 stocks portfolio}
-In order to get the information of the Nasdaq stock we used the API provided by Alphavantage \cite{_alpha_} and we opted for the 1 minute intraday data from which we took the closing price.
+In order to get the information of the NASDAQ stock we used the API provided by Alphavantage \cite{_alpha_} and we opted for the 1 minute intraday data from which we took the closing price. In \ref{portfolio} a sample of such dataset.
+
+
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth, ]{Paper/images/Rplot.png}
     \caption{Plot of the closing price of some portfolio's stock}
-    \label{portfolo}
+    \label{portfolio}
 \end{figure}
 
 \section{Evidence and findings}
