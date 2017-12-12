@@ -13,20 +13,27 @@ set.seed(60)
 s <- 1
 model <- list()
 naive <- list()
+arima <- list()
 name <- list()
 
 #Start from the  first sixty data points
 stockfull <- read.table("stock.csv", dec = ",", sep = ";", header = 1)
 
-for (s in 1:30){
+for (s in 1:31){
 
 i <- 1
+
 buy.model <- FALSE
 buy.naive <- FALSE
+buy.arima <- FALSE
+
 profitloss.model <- 0
 profitloss.naive <- 0
-buyprice.model <- FALSE
-buyprice.naive <- FALSE
+profitloss.arima <- 0
+
+buyprice.model <- 0
+buyprice.naive <- 0
+buyprice.arima <- 0
 
 #starting a loop that will loop 30 times
 for (i in 1:30){
@@ -70,9 +77,16 @@ for (i in 1:30){
   
   #convert prediction to signal
   signal.model <- 0
+  signal.arima <- 0
+  
   if (pred > stock[60,s]){
     signal.model <- 1
   }
+  
+  if (as.numeric(foreca$mean) > stock[60,s]){
+    signal.arima <- 1
+  }
+  
   signal.naive <- sample(c(0,1), replace=TRUE, size=1)
   
   
@@ -88,6 +102,19 @@ for (i in 1:30){
         buyprice.model <- stock[60,s]
         buy.model = TRUE
         }
+    }
+    
+    # buying selling side plain ARIMA  
+    if (buy.arima == TRUE){
+      if (signal.model < 1){
+        profitloss.arima <- profitloss.arima + (buyprice.arima - stock[60,s])
+        buy.arima = FALSE
+      }
+    }else{
+      if (signal.arima == 1){
+        buyprice.arima <- stock[60,s]
+        buy.arima = TRUE
+      }
     }
 
   # buying selling side naive
@@ -109,11 +136,12 @@ for (i in 1:30){
 #deposit the overall profit and loss
 model[s] <- profitloss.model
 naive[s] <- profitloss.naive
+arima[s] <- profitloss.arima
 name[s]  <- names(stockfull)[s]
 
 }
 
-pldata <- data.frame(unlist(name),unlist(model),unlist(naive))
-names(pldata) <- c("Name", "Model", "Naive")
+pldata <- data.frame(unlist(name),unlist(model),unlist(naive), unlist(arima))
+names(pldata) <- c("Name", "Model", "Naive","ARIMA")
 
 
