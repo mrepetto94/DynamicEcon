@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{breqn}
 \usepackage{rotating}
+\usepackage{hyperref}
 
 \usetikzlibrary{arrows,decorations.pathmorphing}
 
@@ -17,7 +18,15 @@
 
 \tikzset{snake it/.style={decorate, decoration=snake}}
 
-% \Mark is probably provided by spconf, that I don't have
+\documentclass[border=5mm,tikz,preview]{standalone}
+    \usetikzlibrary{arrows, arrows.meta, 
+                    chains,
+                    positioning,
+                    shapes}
+\makeatletter
+\tikzset{reset join/.code={\def\tikz@after@path{}}}
+\makeatother
+
 \newcommand{\Mark}[1]{\textsuperscript{#1}}
 
 \begin{document}
@@ -217,7 +226,42 @@ In order to see the goodness of fitting we searched for autocorrelation on the r
 
 Then we built a NN out of it which set as input the lagged stock price and as output the current error term \ref{NN_plot}.
 
-After the model setting we set a series of condition that create the signal. Such condition are highlighted in the following diagram.
+After the model setting we set a series of condition that create the signal. Such condition are highlighted in the following flowchart.
+
+\begin{tikzpicture}[
+node distance= 7mm and 13 mm,
+     start chain = going below,
+     base/.style = {draw, thick, align=center, 
+                    inner ysep=1mm, inner xsep=2mm,
+                    join=by arrow, on chain},
+startstop/.style = {base, rounded rectangle},
+       io/.style = {trapezium, base,
+                    trapezium left angle=70, trapezium right angle=110},
+  process/.style = {base},
+ decision/.style = {diamond, aspect=1.5, base, inner xsep=0pt},
+    arrow/.style = {-{Stealth[scale=1.0]}, rounded corners, thick}
+                    ]
+ % main
+\node (start) [startstop] {Start};
+\node (p1)  [process]   {Buy = FALSE};
+\node (d1) [decision]  {$\text{Price} > \text{Prediction} $};
+
+\node (d2) [decision]  {$Price > Prediciton$};
+\node (p3)     [process]        {Buy = TRUE};
+
+% left and right
+\node (p2f)    [process, left=of d1]   {Buy = TRUE};
+\node (p2t)    [process, right=of d1]   {Buy = FALSE};
+
+% coordinates
+
+%
+\draw[arrow] (d1.east) node[above left] {True} -- (p2t);
+%\draw[arrow] (d1.east) node[above left] {False} -- (p2f);
+%\draw[arrow] (d1.west) node[above left] {True} -- (p2t);
+
+\end{tikzpicture}
+
 
 \section{Evidence and findings}
 After 930 rounds, that is we run the sequence for all the stocks in the portfolio, we got the following conclusion:
@@ -251,7 +295,8 @@ In conclusion we can say that the hybrid ARIMA however is a very interesting too
 
 The writer of this article hope that many other researchers will try to cast some light above this hybrid methodology in order to develop a better process for such modelling.
 
-All the scripts and files are available on GitHub at the following repository: 
+All the scripts and files are available on GitHub at the following repository:
+\href{url}{https://github.com/mrepetto94/DynamicEcon} 
 
 \newpage
 \emergencystretch=1em
