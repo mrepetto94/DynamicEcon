@@ -47,14 +47,22 @@ for (i in 1:30){
   
   if (i!=1){
     #bulding a confusion matrix process
-    if (stock[59,s] < stock[60,s]){ real[(i+(s*31))-1] <- 1 }
+    if (stock[59,s] < stock[60,s]){ real[(i+(s*31))] <- 1 }
     #naive confusion matrix part
-    confunaive[(i+(s*31))-1] <- signal.naive
+    confunaive[(i+(s*31))] <- signal.naive
     #ARIMA confusion matrix part
-    confunaive[(i+(s*31))-1] <- signal.arima
+    confuarima[(i+(s*31))] <- signal.arima
     #Hybrid model confusion matrix part
-    confunaive[(i+(s*31))-1] <- signal.model
-  }
+    confumodel[(i+(s*31))] <- signal.model
+  }else{
+    real[(i+(s*31))] <- NA
+  #naive confusion matrix part
+  confunaive[(i+(s*31))] <- NA
+  #ARIMA confusion matrix part
+  confuarima[(i+(s*31))] <- NA
+  #Hybrid model confusion matrix part
+  confumodel[(i+(s*31))] <- NA
+}
   
    #get training set
   train <- ts(stock[,s])
@@ -154,10 +162,10 @@ name[s]  <- names(stockfull)[s]
 
 }
 
-confumatrix <- data.frame(unlist(name),unlist(real),unlist(confumodel),unlist(confunaive),unlist(confuarima))
+confumatrix <- data.frame(unlist(real),unlist(confumodel),unlist(confunaive),unlist(confuarima))
 pldata <- data.frame(unlist(name),unlist(model),unlist(naive), unlist(arima))
 names(pldata) <- c("Name", "Model", "Naive","ARIMA")
-names(confumatrix) <- c("Name","Real", "Model", "Naive","ARIMA")
+names(confumatrix) <- c("Real", "Model", "Naive","ARIMA")
 
 
 
