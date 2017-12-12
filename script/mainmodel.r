@@ -9,10 +9,16 @@ library(neuralnet)
 
 #set seed and choose a random stock to give into the ARIMA process
 set.seed(60)
-s <- sample(1:31, 1)
+#s <- sample(1:31, 1)
+s <- 1
+model <- list()
+naive <- list()
+name <- list()
 
 #Start from the  first sixty data points
 stockfull <- read.table("stock.csv", dec = ",", sep = ";", header = 1)
+
+for (s in 1:30){
 
 i <- 1
 buy.model <- FALSE
@@ -99,3 +105,15 @@ for (i in 1:30){
   }
 
 }
+
+#deposit the overall profit and loss
+model[s] <- profitloss.model
+naive[s] <- profitloss.naive
+name[s]  <- names(stockfull)[s]
+
+}
+
+pldata <- data.frame(unlist(name),unlist(model),unlist(naive))
+names(pldata) <- c("Name", "Model", "Naive")
+
+
