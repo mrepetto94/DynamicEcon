@@ -219,19 +219,36 @@ Then we built a NN out of it which set as input the lagged stock price and as ou
 After the model setting we set a series of condition that create the signal. Such condition are highlighted in the following diagram.
 
 \section{Evidence and findings}
-After 930 rounds, that is we run the sequence for all the stocks in the portfolio we get the following conclusion:
+After 930 rounds, that is we run the sequence for all the stocks in the portfolio, we got the following conclusion:
 \begin{itemize}
-    \item the model out perform the naive algorithm
-    \item the model failed to predict in a consistent way whether the price was going up or down
-    \item either the models alone failed to do so 
+    \item the model out perform the naive algorithm;
+    \item the model failed to predict in a consistent way whether the price was going up or down;
+    \item either the models alone failed to do so;
+    \item the plain ARIMA performed purely in comparison with the hybrid model.
 \end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth, ]{Paper/images/PL_plot.png}
+    \caption{Plot of the aggregate P/L per stock}
+    \label{pl_portfolio}
+\end{figure}
+
 Therefore we can conclude that such model didn't gave any competitive advantage in terms of profit and loss.
+
+In order to be sure of the forecasting prediction we computed the confusion matrix of each model and we get the following information:
+\begin{itemize}
+    \item the model out perform the naive algorithm;
+    \item the model failed to predict in a consistent way whether the price was going up or down;
+    \item either the models alone failed to do so;
+    \item the plain ARIMA performed purely in comparison with the hybrid model.
+\end{itemize}
 
 
 \section{Conclusion}
 In conclusion we can say that the hybrid ARIMA however is a very interesting tool for data forecasting is still not able (at least as posed in this paper) to be used in algorithmic trading. 
 
-The writer of this article hope that many other researchers will try to cast some light above this hybrd methodology in order to develop a better process for such modelling.
+The writer of this article hope that many other researchers will try to cast some light above this hybrid methodology in order to develop a better process for such modelling.
 
 All the scripts and files are available on GitHub at the following repository: 
 
@@ -239,5 +256,14 @@ All the scripts and files are available on GitHub at the following repository:
 \emergencystretch=1em
 \sloppy
 \printbibliography
+
+\newpage
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth, ]{Paper/images/NN_plot}
+    \caption{Plot of the aggregate P/L per stock}
+    \label{nn_portfolio}
+\end{figure}
+
 
 \end{document}
