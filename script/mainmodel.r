@@ -16,13 +16,10 @@ naive <- list()
 arima <- list()
 name <- list()
 
-confumodel <- 1
-confunaive <- 1
-confuarima <- 1
-real <- 1
-
-confumatrix <- data.frame(name,real,confumodel,confunaive,confuarima)
-
+confumodel <- list()
+confunaive <- list()
+confuarima <- list()
+real <- list()
 
 #Start from the  first sixty data points
 stockfull <- read.table("stock.csv", dec = ",", sep = ";", header = 1)
@@ -50,13 +47,13 @@ for (i in 1:30){
   
   if (i!=1){
     #bulding a confusion matrix process
-    if (stock[(i+58),s] < stock[(i+59),s]){ confumatrix$real[(i+(s*31))-1] <- 1}
+    if (stock[59,s] < stock[60,s]){ real[(i+(s*31))-1] <- 1 }
     #naive confusion matrix part
-    confumatrix$confunaive[(i+(s*31))-1] <- signal.naive
+    confunaive[(i+(s*31))-1] <- signal.naive
     #ARIMA confusion matrix part
-    confumatrix$confunaive[(i+(s*31))-1] <- signal.arima
+    confunaive[(i+(s*31))-1] <- signal.arima
     #Hybrid model confusion matrix part
-    confumatrix$confunaive[(i+(s*31))-1] <- signal.model
+    confunaive[(i+(s*31))-1] <- signal.model
   }
   
    #get training set
@@ -157,7 +154,10 @@ name[s]  <- names(stockfull)[s]
 
 }
 
+confumatrix <- data.frame(unlist(name),unlist(real),unlist(confumodel),unlist(confunaive),unlist(confuarima))
 pldata <- data.frame(unlist(name),unlist(model),unlist(naive), unlist(arima))
 names(pldata) <- c("Name", "Model", "Naive","ARIMA")
+names(confumatrix) <- c("Name","Real", "Model", "Naive","ARIMA")
+
 
 
