@@ -16,6 +16,14 @@ naive <- list()
 arima <- list()
 name <- list()
 
+confumodel <- 1
+confunaive <- 1
+confuarima <- 1
+real <- 1
+
+confumatrix <- data.frame(name,real,confumodel,confunaive,confuarima)
+
+
 #Start from the  first sixty data points
 stockfull <- read.table("stock.csv", dec = ",", sep = ";", header = 1)
 
@@ -37,13 +45,21 @@ buyprice.arima <- 0
 
 #starting a loop that will loop 30 times
 for (i in 1:30){
-
-  print("starting round")
-  print(i)
   
   stock <- stockfull[i:(i+59),]
   
-  #get training set
+  if (i!=1){
+    #bulding a confusion matrix process
+    if (stock[(i+58),s] < stock[(i+59),s]){ confumatrix$real[(i+(s*31))-1] <- 1}
+    #naive confusion matrix part
+    confumatrix$confunaive[(i+(s*31))-1] <- signal.naive
+    #ARIMA confusion matrix part
+    confumatrix$confunaive[(i+(s*31))-1] <- signal.arima
+    #Hybrid model confusion matrix part
+    confumatrix$confunaive[(i+(s*31))-1] <- signal.model
+  }
+  
+   #get training set
   train <- ts(stock[,s])
   
   #fit model
