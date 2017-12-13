@@ -4,7 +4,7 @@ require(alphavantager)
 
 av_api_key(Sys.getenv("Alpha_key"))
 
-set.seed(60)
+#set.seed(60)
 
 readSym <- function(sym) {
     out <- tryCatch(
@@ -39,7 +39,7 @@ list <- as.character(list[,1])
 #just to let the first warning go away
 f <- av_get(symbol = list[1], av_fun = "TIME_SERIES_INTRADAY", interval = "1min") 
 
-list <- sample(list, 34)
+#list <- sample(list, 34)
 
 stock <- sapply(list, readSym)
 
