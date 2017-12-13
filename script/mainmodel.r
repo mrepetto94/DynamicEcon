@@ -16,16 +16,19 @@ naive <- list()
 arima <- list()
 name <- list()
 
-confumodel <- list()
-confunaive <- list()
-confuarima <- list()
-real <- list()
+confumodel <- vector(mode = "numeric", length = 930)
+confunaive <- vector(mode = "numeric", length = 930)
+confuarima <- vector(mode = "numeric", length = 930)
+real <- vector(mode = "numeric", length = 930)
+
+confumatrix <- data.frame(real,confumodel,confunaive,confuarima)
+names(confumatrix) <- c("Real", "Model", "Naive","ARIMA")
 
 #Start from the  first sixty data points
 stockfull <- read.table("stock.csv", dec = ",", sep = ";", header = 1)
 
 for (s in 1:31){
-
+print(s)
 i <- 1
 
 buy.model <- FALSE
@@ -45,23 +48,25 @@ for (i in 1:30){
   
   stock <- stockfull[i:(i+59),]
   
-  if (i!=1){
+  if (i!= 1){
     #bulding a confusion matrix process
-    if (stock[59,s] < stock[60,s]){ real[(i+(s*31))] <- 1 }
+    if (stock[59,s] < stock[60,s]){ 
+      confumatrix$Real[(i+(s*31))] <- 1 
+      }
     #naive confusion matrix part
-    confunaive[(i+(s*31))] <- signal.naive
+    confumatrix$Naive[(i+(s*31))] <- signal.naive
     #ARIMA confusion matrix part
-    confuarima[(i+(s*31))] <- signal.arima
+    confumatrix$ARIMA[(i+(s*31))] <- signal.arima
     #Hybrid model confusion matrix part
-    confumodel[(i+(s*31))] <- signal.model
+    confumatrix$Model[(i+(s*31))] <- signal.model
   }else{
     real[(i+(s*31))] <- NA
   #naive confusion matrix part
-  confunaive[(i+(s*31))] <- NA
+    confumatrix$Naive[(i+(s*31))] <- NA
   #ARIMA confusion matrix part
-  confuarima[(i+(s*31))] <- NA
+    confumatrix$ARIMA[(i+(s*31))] <- NA
   #Hybrid model confusion matrix part
-  confumodel[(i+(s*31))] <- NA
+    confumatrix$Model[(i+(s*31))] <- NA
 }
   
    #get training set
@@ -162,10 +167,10 @@ name[s]  <- names(stockfull)[s]
 
 }
 
-confumatrix <- data.frame(unlist(real),unlist(confumodel),unlist(confunaive),unlist(confuarima))
+
 pldata <- data.frame(unlist(name),unlist(model),unlist(naive), unlist(arima))
 names(pldata) <- c("Name", "Model", "Naive","ARIMA")
-names(confumatrix) <- c("Real", "Model", "Naive","ARIMA")
+
 
 
 
