@@ -29,7 +29,7 @@ names(confumatrix) <- c("Real", "Model", "Naive","ARIMA")
 #Start from the  first sixty data points
 stockfull <- read.table("stock.csv", dec = ",", sep = ";", header = 1)
 
-for (s in 1:31){
+for (s in 1:length(stockfull)){
 print(s)
 i <- 1
 
@@ -216,7 +216,8 @@ p3 <-ggplot(data =  df, mapping = aes(x = Real, y = Predicted)) +
   theme_bw() + theme(legend.position = "none") +
   labs(title = "Hybrid ARIMA")
 
-multiplot(p1, p2, p3, cols=1)
+ggarrange(p1, p2, p3,
+          ncol = 3, nrow = 1)
 
 
 
