@@ -6,6 +6,8 @@
 library(forecast)
 library(tseries)
 library(neuralnet)
+library(ggplot2)
+library(ggpubr)
 
 #set seed and choose a random stock to give into the ARIMA process
 set.seed(60)
@@ -16,10 +18,10 @@ naive <- list()
 arima <- list()
 name <- list()
 
-confumodel <- vector(mode = "numeric", length = 930)
-confunaive <- vector(mode = "numeric", length = 930)
-confuarima <- vector(mode = "numeric", length = 930)
-real <- vector(mode = "numeric", length = 930)
+confumodel <- vector(mode = "numeric", length = 931)
+confunaive <- vector(mode = "numeric", length = 931)
+confuarima <- vector(mode = "numeric", length = 931)
+real <- vector(mode = "numeric", length = 931)
 
 confumatrix <- data.frame(real,confumodel,confunaive,confuarima)
 names(confumatrix) <- c("Real", "Model", "Naive","ARIMA")
@@ -51,22 +53,22 @@ for (i in 1:30){
   if (i!= 1){
     #bulding a confusion matrix process
     if (stock[59,s] < stock[60,s]){ 
-      confumatrix$Real[(i+(s*31))] <- 1 
+      confumatrix$Real[(i+((s-1)*31))] <- 1 
       }
     #naive confusion matrix part
-    confumatrix$Naive[(i+(s*31))] <- signal.naive
+    confumatrix$Naive[(i+((s-1)*31))] <- signal.naive
     #ARIMA confusion matrix part
-    confumatrix$ARIMA[(i+(s*31))] <- signal.arima
+    confumatrix$ARIMA[(i+((s-1)*31))] <- signal.arima
     #Hybrid model confusion matrix part
-    confumatrix$Model[(i+(s*31))] <- signal.model
+    confumatrix$Model[(i+((s-1)*31))] <- signal.model
   }else{
-    real[(i+(s*31))] <- NA
+    confumatrix$Real[(i+((s-1)*31))] <- NA
   #naive confusion matrix part
-    confumatrix$Naive[(i+(s*31))] <- NA
+    confumatrix$Naive[(i+((s-1)*31))] <- NA
   #ARIMA confusion matrix part
-    confumatrix$ARIMA[(i+(s*31))] <- NA
+    confumatrix$ARIMA[(i+((s-1)*31))] <- NA
   #Hybrid model confusion matrix part
-    confumatrix$Model[(i+(s*31))] <- NA
+    confumatrix$Model[(i+((s-1)*31))] <- NA
 }
   
    #get training set
@@ -167,10 +169,54 @@ name[s]  <- names(stockfull)[s]
 
 }
 
-
 pldata <- data.frame(unlist(name),unlist(model),unlist(naive), unlist(arima))
 names(pldata) <- c("Name", "Model", "Naive","ARIMA")
 
+#confuion matrixes plot
+
+Real <-      factor(c(0, 0, 1, 1))
+Predicted <- factor(c(0, 1, 0, 1))
+
+Y      <- c(sum((confumatrix$Real == 0) & (confumatrix$ARIMA == 0), na.rm=TRUE),
+            sum((confumatrix$Real == 0) & (confumatrix$ARIMA == 1), na.rm=TRUE),
+            sum((confumatrix$Real == 1) & (confumatrix$ARIMA == 0), na.rm=TRUE), 
+            sum((confumatrix$Real == 1) & (confumatrix$ARIMA == 1), na.rm=TRUE))
+df <- data.frame(Real, Predicted, Y)
+
+p2 <-ggplot(data =  df, mapping = aes(x = Real, y = Predicted)) +
+  geom_tile(aes(fill = Y), colour = "white") +
+  geom_text(aes(label = sprintf("%1.0f", Y)), vjust = 1) +
+  scale_fill_gradient(low = "white", high = "grey") +
+  theme_bw() + theme(legend.position = "none") +
+  labs(title = "ARIMA")
+
+Y      <- c(sum((confumatrix$Real == 0) & (confumatrix$Naive == 0), na.rm=TRUE),
+            sum((confumatrix$Real == 0) & (confumatrix$Naive == 1), na.rm=TRUE),
+            sum((confumatrix$Real == 1) & (confumatrix$Naive == 0), na.rm=TRUE), 
+            sum((confumatrix$Real == 1) & (confumatrix$Naive == 1), na.rm=TRUE))
+df <- data.frame(Real, Predicted, Y)
+
+p1 <-ggplot(data =  df, mapping = aes(x = Real, y = Predicted)) +
+  geom_tile(aes(fill = Y), colour = "white") +
+  geom_text(aes(label = sprintf("%1.0f", Y)), vjust = 1) +
+  scale_fill_gradient(low = "white", high = "grey") +
+  theme_bw() + theme(legend.position = "none") +
+  labs(title = "Naive")
+
+Y      <- c(sum((confumatrix$Real == 0) & (confumatrix$Model == 0), na.rm=TRUE),
+            sum((confumatrix$Real == 0) & (confumatrix$Model == 1), na.rm=TRUE),
+            sum((confumatrix$Real == 1) & (confumatrix$Model == 0), na.rm=TRUE), 
+            sum((confumatrix$Real == 1) & (confumatrix$Model == 1), na.rm=TRUE))
+df <- data.frame(Real, Predicted, Y)
+
+p3 <-ggplot(data =  df, mapping = aes(x = Real, y = Predicted)) +
+  geom_tile(aes(fill = Y), colour = "white") +
+  geom_text(aes(label = sprintf("%1.0f", Y)), vjust = 1) +
+  scale_fill_gradient(low = "white", high = "grey") +
+  theme_bw() + theme(legend.position = "none") +
+  labs(title = "Hybrid ARIMA")
+
+multiplot(p1, p2, p3, cols=1)
 
 
 
