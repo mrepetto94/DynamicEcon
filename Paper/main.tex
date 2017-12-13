@@ -18,15 +18,6 @@
 
 \tikzset{snake it/.style={decorate, decoration=snake}}
 
-\documentclass[border=5mm,tikz,preview]{standalone}
-    \usetikzlibrary{arrows, arrows.meta, 
-                    chains,
-                    positioning,
-                    shapes}
-\makeatletter
-\tikzset{reset join/.code={\def\tikz@after@path{}}}
-\makeatother
-
 \newcommand{\Mark}[1]{\textsuperscript{#1}}
 
 \begin{document}
@@ -228,37 +219,7 @@ Then we built a NN out of it which set as input the lagged stock price and as ou
 
 After the model setting we set a series of condition that create the signal. Such condition are highlighted in the following flowchart.
 
-\begin{tikzpicture}[
-node distance= 7mm and 13 mm,
-     start chain = going below,
-     base/.style = {draw, thick, align=center, 
-                    inner ysep=1mm, inner xsep=2mm,
-                    join=by arrow, on chain},
-startstop/.style = {base, rounded rectangle},
-       io/.style = {trapezium, base,
-                    trapezium left angle=70, trapezium right angle=110},
-  process/.style = {base},
- decision/.style = {diamond, aspect=1.5, base, inner xsep=0pt},
-    arrow/.style = {-{Stealth[scale=1.0]}, rounded corners, thick}
-                    ]
- % main
-\node (start) [startstop] {Start};
-\node (p1)  [process]   {Buy = FALSE};
-\node (d1) [decision]  {$\text{Price} > \text{Prediction} $};
-
-\node (d2) [decision]  {$Price > Prediciton$};
-\node (p3)     [process]        {Buy = TRUE};
-
-% left and right
-\node (p2f)    [process, left=of d1]   {Buy = TRUE};
-\node (p2t)    [process, right=of d1]   {Buy = FALSE};
-
-% coordinates
-
-%
-\draw[arrow] (d1.east) node[above left] {True} -- (p2t);
-%\draw[arrow] (d1.east) node[above left] {False} -- (p2f);
-%\draw[arrow] (d1.west) node[above left] {True} -- (p2t);
+\begin{tikzpicture}
 
 \end{tikzpicture}
 
