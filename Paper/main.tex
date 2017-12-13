@@ -242,9 +242,9 @@ After 930 rounds, that is we run the sequence for all the stocks in the portfoli
 
 Therefore we can conclude that such model didn't gave any competitive advantage in terms of profit and loss.
 
-In order to be sure of the forecasting prediction we computed the confusion matrix of each model and we get the following information:
+In order to be sure of the forecasting prediction we computed the confusion matrix for each model represented at \ref{confusionmatrix}. A information:
 \begin{itemize}
-    \item the model out perform the naive algorithm;
+    \item the ARodel out perform the naive algorithm;
     \item the model failed to predict in a consistent way whether the price was going up or down;
     \item either the models alone failed to do so;
     \item the plain ARIMA performed purely in comparison with the hybrid model.
@@ -252,9 +252,9 @@ In order to be sure of the forecasting prediction we computed the confusion matr
 
 \begin{figure}
     \centering
-    \includegraphics[width=1\linewidth, ]{Paper/images/.png}
+    \includegraphics[width=1\linewidth, ]{Paper/images/Confusion_matrix.png}
     \caption{Plot of the aggregate P/L per stock}
-    \label{pl_portfolio}
+    \label{confusionmatrix}
 \end{figure}
 
 \section{Conclusion}
