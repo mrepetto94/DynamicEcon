@@ -25,7 +25,11 @@ In theoretical terms we assume a the time series to be constituted by two compon
 Then we model our residuals with a ANN that will capture this nonlinearities using the normalized stock prices lagged one time. The reason behind the normalization is simple, we do not want the price size to affect our neural net wheigt but instead we want to look at the stock price behaviour. In our case:
 <p align="center"><img src="/tex/b601326f4eb2206916bfc39a921b6e28.svg?invert_in_darkmode&sanitize=true" align=middle width=183.39041984999997pt height=20.2118565pt/></p>
 
-## Plot of the neural net
+## Plots
+Profit/Loss plot
+![PL](/Paper/images/PL_plot.png)
+Confusion Matrix plot
+![ConfuMat](/Paper/images/Confusion_matrix.png)
 
 ## Author
 * **Marco Repetto**: [LinkedIn](https://www.linkedin.com/in/marco-repetto-256562b3/)
