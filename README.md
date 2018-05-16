@@ -16,5 +16,16 @@ Moving average models are defined as:
 The concatenation of the three gives us the ARIMA process obtained as:
 <p align="center"><img src="/tex/0ecf28c5feb1e8c06042abec57556069.svg?invert_in_darkmode&sanitize=true" align=middle width=478.40431154999993pt height=45.56341019999999pt/></p>
 
+The ARIMA process is better suited to capture the linearities of a stochastic process, but what about its nonlinearities? How can we capture them in order to get a better result in our prediction?
+An attempt to overcome this problem could be the mixture of some other methods that are built to track such patterns. This is the reason why we chose the hybrid model ARIMA/ANN to do this job.
+The mixed-use of ARIMA and neural networks was firstly made by P. Zhang.
+
+In theoretical terms we assume a the time series to be constituted by two components one which is linear auto correlated <img src="/tex/bcd81920696e26093495d90eb4cd7b1b.svg?invert_in_darkmode&sanitize=true" align=middle width=16.153034699999992pt height=22.465723500000017pt/> and one <img src="/tex/531638c33e2138742873b26f670a7b4d.svg?invert_in_darkmode&sanitize=true" align=middle width=18.173560349999992pt height=22.465723500000017pt/> non linear. If we let the ARIMA model the linear component we'll end up with the residuals which contains the non linear component.
+<p align="center"><img src="/tex/523f4f809349305aceafe07fecdb77f9.svg?invert_in_darkmode&sanitize=true" align=middle width=85.4508006pt height=18.7671198pt/></p>
+Then we model our residuals with a ANN that will capture this nonlinearities using the normalized stock prices lagged one time. The reason behind the normalization is simple, we do not want the price size to affect our neural net wheigt but instead we want to look at the stock price behaviour. In our case:
+<p align="center"><img src="/tex/b601326f4eb2206916bfc39a921b6e28.svg?invert_in_darkmode&sanitize=true" align=middle width=183.39041984999997pt height=20.2118565pt/></p>
+
+## Plot of the neural net
+
 ## Author
 * **Marco Repetto**: [LinkedIn](https://www.linkedin.com/in/marco-repetto-256562b3/)
