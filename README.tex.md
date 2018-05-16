@@ -32,8 +32,10 @@ e_t=f(S^1_{t-1},..., S^k_{t-1})-\epsilon_t
 $$
 
 ## Plots
+
 Profit/Loss plot
 ![PL](/Paper/images/PL_plot.png)
+
 Confusion Matrix plot
 ![ConfuMat](/Paper/images/Confusion_matrix.png)
 
