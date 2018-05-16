@@ -31,7 +31,11 @@ $$
 e_t=f(S^1_{t-1},..., S^k_{t-1})-\epsilon_t
 $$
 
-## Plot of the neural net
+## Plots
+Profit/Loss plot
+![PL](/Paper/images/PL_plot.png)
+Confusion Matrix plot
+![ConfuMat](/Paper/images/Confusion_matrix.png)
 
 ## Author
 * **Marco Repetto**: [LinkedIn](https://www.linkedin.com/in/marco-repetto-256562b3/)
